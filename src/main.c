@@ -45,6 +45,10 @@ bool initialize_window(void) {
 void setup(void) {
   // The programmer is responsible for clearing the memory allocated with malloc.
   color_buffer = (uint32_t*) malloc(sizeof(uint32_t) * window_width * window_height);
+  if (!color_buffer) {
+    printf("Error: Out of memory\n");
+    exit(-1);
+  }
 }
 
 void process_input(void) {
