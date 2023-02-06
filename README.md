@@ -10,6 +10,7 @@ A crossplatform graphics library using SDL2
 [X] Game Loop
 [X] Declaring Color Buffer and allocating memory
 [X] SDL Texture
-[ ] Full Screen Window
+[X] Full Screen Window
+[ ] Drawing Background Grid
 
 

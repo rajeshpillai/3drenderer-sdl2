@@ -21,7 +21,15 @@ bool initialize_window(void) {
     return false;
   }
 
-// Create a SDL Window
+  // USE SDL to query the current resolution of the monitor
+  SDL_DisplayMode display_mode;
+
+  SDL_GetCurrentDisplayMode(0, &display_mode);
+
+  window_width = display_mode.w;
+  window_height = display_mode.h;
+
+  // Create a SDL Window
   window = SDL_CreateWindow(
     NULL,
     SDL_WINDOWPOS_CENTERED,
@@ -31,7 +39,7 @@ bool initialize_window(void) {
     SDL_WINDOW_BORDERLESS
   );
 
-   if (NULL == window) {
+  if (NULL == window) {
     fprintf(stderr, "Error creating SDL window.\n");
     return false;
   }
@@ -42,6 +50,10 @@ bool initialize_window(void) {
     fprintf(stderr, "Error creating SDL renderef.\n");
     return false;
   }
+
+  // Set the video mode to be real full screen as well
+  SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN);
+
   return true;
 }
 
