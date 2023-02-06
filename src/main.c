@@ -5,10 +5,13 @@
 
 
 bool is_running = false;
+
 SDL_Window* window = NULL;
 SDL_Renderer* renderer = NULL;
+SDL_Texture* color_buffer_texture = NULL;
 
 uint32_t* color_buffer = NULL;
+
 int window_width = 800;
 int window_height = 600;
 
@@ -49,6 +52,16 @@ void setup(void) {
     printf("Error: Out of memory\n");
     exit(-1);
   }
+
+  // Creating a the SDL texture that is used to display the color buffer
+  color_buffer_texture = SDL_CreateTexture(
+    renderer,
+    SDL_PIXELFORMAT_ARGB8888,
+    SDL_TEXTUREACCESS_STREAMING,
+    window_width,
+    window_height
+  );
+
 }
 
 void process_input(void) {
@@ -72,6 +85,33 @@ void update(void) {
 
 }
 
+void clear_color_buffer(uint32_t color) {
+  for(int y = 0; y < window_height; y++) {
+    for (int x = 0; x < window_width; x++) {
+      color_buffer[(window_width * y) + x] = color;
+    }
+  }
+}
+
+void render_color_buffer() {
+  SDL_UpdateTexture(
+    color_buffer_texture,
+    NULL,
+    color_buffer,
+    (int)(window_width * sizeof(uint32_t))   // sizeof one single row
+  );
+
+  SDL_RenderCopy(renderer, color_buffer_texture, NULL, NULL);
+}
+
+void render(void) {
+  SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255 );
+  SDL_RenderClear(renderer);
+  render_color_buffer();
+  clear_color_buffer(0xFFFFFF00);
+  SDL_RenderPresent(renderer);
+}
+
 // Clean up
 void destroy_window(void) {
   free(color_buffer);
@@ -80,11 +120,6 @@ void destroy_window(void) {
   SDL_Quit();
 }
 
-void render(void) {
-  SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255 );
-  SDL_RenderClear(renderer);
-  SDL_RenderPresent(renderer);
-}
 
 int main (int argv, char** args) {
   is_running = initialize_window();
