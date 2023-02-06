@@ -1,5 +1,5 @@
-#SDL2 Graphics
+# SDL2 Graphics
 A crossplatform graphics library using SDL2
 
-##Compile executable
+## Compile executable
 ```mingw32-make```
