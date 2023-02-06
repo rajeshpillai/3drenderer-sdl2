@@ -5,8 +5,11 @@ A crossplatform graphics library using SDL2
 ```mingw32-make```
 
 # Features
-- Setup SDL2
-- Create and Render a SDL Window
-- Game Loop
-- Declaring Color Buffer and allocating memory
-- SDL Texture
+[X] Setup SDL2
+[X] Create and Render a SDL Window
+[X] Game Loop
+[X] Declaring Color Buffer and allocating memory
+[X] SDL Texture
+[ ] Full Screen Window
+
+
