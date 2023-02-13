@@ -11,6 +11,6 @@ A crossplatform graphics library using SDL2
 - [x] Declaring Color Buffer and allocating memory
 - [x] SDL Texture
 - [x] Full Screen Window
-- [ ] Drawing Background Grid
+- [x] Drawing Background Grid
 
 
