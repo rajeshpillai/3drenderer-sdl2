@@ -12,5 +12,5 @@ A crossplatform graphics library using SDL2
 - [x] SDL Texture
 - [x] Full Screen Window
 - [x] Drawing Background Grid
-
+- [x] Drawing Rectangles
 
